@@ -1,0 +1,19 @@
+.tabbar a {
+  background: transparent;
+  color: #989995;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 11px;
+  text-decoration: none;
+}
+.tabbar a.active {
+  color: #20211f;
+  font-weight: 700;
+}
+.tabbar a span {
+  font-size: 20px;
+  line-height: 19px;
+}

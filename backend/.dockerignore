@@ -1,0 +1,8 @@
+target
+.m2
+.idea
+.git
+*.iml
+README.md
+.env
+logs

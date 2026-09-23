@@ -1,0 +1,19 @@
+# Environment secrets
+.env
+**/.env
+
+# Java / Maven
+backend/target/
+backend/.m2/
+*.class
+*.log
+
+# Node / Vite
+frontend/node_modules/
+frontend/dist/
+
+# IDE and OS files
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
