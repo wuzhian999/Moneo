@@ -36,7 +36,7 @@ VITE_API_BASE_URL=http://your-api-host:8080/api
 - `GET /api/dashboard/summary`：月度收入、支出、结余与预算汇总
 - `PUT /api/budgets/{yyyy-MM}`：保存当前月份预算
 
-预算仍是前端本地状态，因为第一阶段后端尚未提供预算模块。
+预算由后端 `budget` 表持久化；生产环境前端通过 Nginx 将同源 `/api` 请求代理到后端，因此不需要设置 `VITE_API_BASE_URL`。
 
 ## 目录
 
