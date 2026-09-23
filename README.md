@@ -57,3 +57,19 @@ docker compose up -d --build
 ```
 
 复制 `.env.example` 为 `.env` 后再改成真实生产密码。`.env` 已由 Git 忽略。
+
+## Ubuntu 一键部署
+
+服务器首次准备好 Git、Docker Engine、Docker Compose Plugin 与 `curl` 后，复制 `.env.example` 为 `.env` 并填写 MySQL 密码。默认项目路径为 `/opt/apps/Moneo`。
+
+```bash
+cd /opt/apps/Moneo
+chmod +x scripts/deploy.sh
+./scripts/deploy.sh
+```
+
+脚本会拉取 `main` 分支、校验 Compose 配置、重新构建并启动容器，然后通过 `http://127.0.0.1:${FRONTEND_PORT:-80}/api/health` 检查 Nginx 到 Spring Boot 的完整链路。可通过环境变量临时覆盖项目目录、分支和健康检查超时：
+
+```bash
+PROJECT_DIR=/opt/apps/Moneo BRANCH=main HEALTH_TIMEOUT_SECONDS=180 ./scripts/deploy.sh
+```
