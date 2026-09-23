@@ -18,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -105,12 +104,12 @@ public class BillServiceImpl implements BillService {
         bill.setCategoryId(request.categoryId());
         bill.setAccountId(request.accountId());
         bill.setAmount(request.amount());
-        bill.setOccurredAt(LocalDateTime.of(request.date(), request.time() == null ? LocalTime.now().withSecond(0).withNano(0) : request.time()));
+        bill.setOccurredAt(request.date().atStartOfDay());
         bill.setNote(request.note() == null || request.note().isBlank() ? null : request.note().trim());
     }
 
     private BillVo toVo(Bill bill, Category category) {
         return new BillVo(bill.getId(), bill.getType(), bill.getCategoryId(), bill.getAccountId(), category.getName(), category.getIcon(), category.getColor(),
-                bill.getAmount(), bill.getOccurredAt().toLocalDate(), bill.getOccurredAt().toLocalTime(), bill.getNote());
+                bill.getAmount(), bill.getOccurredAt().toLocalDate(), bill.getNote());
     }
 }

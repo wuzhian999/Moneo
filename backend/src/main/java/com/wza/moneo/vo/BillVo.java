@@ -5,7 +5,6 @@ import com.wza.moneo.common.enums.RecordType;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public record BillVo(
         Long id,
@@ -17,7 +16,6 @@ public record BillVo(
         String color,
         BigDecimal amount,
         @JsonFormat(pattern = "yyyy-MM-dd") LocalDate date,
-        @JsonFormat(pattern = "HH:mm") LocalTime time,
         String note
 ) {
 }

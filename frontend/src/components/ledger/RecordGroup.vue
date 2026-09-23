@@ -53,7 +53,7 @@ function remove(record: LedgerRecord) {
       <div class="record-actions"><button class="edit-action" @click.stop="edit(record)">编辑</button><button class="delete-action" @click.stop="remove(record)">删除</button></div>
       <article class="record-row" :class="{ 'actions-open': openedRecordId === record.id }" @click="handleRecordClick(record)">
         <span class="record-icon" :style="{ background: record.color }">{{ theme === 'magic' ? magicCategoryIcon(record.category, record.icon) : record.icon }}</span>
-        <div class="record-info"><b>{{ record.category }}</b><span>{{ record.note }} · {{ record.time }}</span></div>
+        <div class="record-info"><b>{{ record.category }}</b><span>{{ record.note || '未备注' }}</span></div>
         <strong :class="record.type">{{ record.type === 'expense' ? '-' : '+' }}¥{{ formatMoney(record.amount) }}</strong>
       </article>
     </div>

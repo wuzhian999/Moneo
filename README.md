@@ -20,7 +20,6 @@ Moneo/
 | `icon` / `color` | `icon` / `color` | `category.icon` / `category.color` | 保持前端展示字段 |
 | `amount` | `amount` | `bill.amount` | 后端为 `BigDecimal`，JSON 为数值 |
 | `date` | `date` | `bill.occurred_at` | `yyyy-MM-dd` |
-| `time` | `time` | `bill.occurred_at` | `HH:mm` |
 | `note` | `note` | `bill.note` | 备注 |
 | `categoryId` | `categoryId` | `bill.category_id` | 保存分类关系 |
 | `accountId` | `accountId` | `bill.account_id` | 保存账户关系 |

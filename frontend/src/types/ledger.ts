@@ -26,7 +26,6 @@ export interface LedgerRecord extends Pick<Category, 'icon' | 'color'> {
   accountId: number
   date: string
   note: string
-  time: string
   amount: number
   category: string
 }
@@ -58,7 +57,6 @@ export interface BillSavePayload {
   accountId: number
   amount: number
   date: string
-  time: string
   note?: string
 }
 

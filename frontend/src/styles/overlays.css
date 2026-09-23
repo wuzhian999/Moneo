@@ -37,7 +37,7 @@
 .note-field input::placeholder {
   color: var(--color-text-faint);
 }
-.datetime-field {
+.date-field {
   width: 100%;
   display: flex;
   align-items: center;
@@ -52,12 +52,7 @@
   font-size: 14px;
   text-align: left;
 }
-.datetime-field > div {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-.datetime-field b {
+.date-field b {
   display: inline-flex;
   align-items: center;
   height: 34px;
@@ -69,13 +64,13 @@
   font-size: 12px;
   font-variant-numeric: tabular-nums;
 }
-.datetime-picker-mask {
+.date-picker-mask {
   position: fixed;
   z-index: 32;
   inset: 0;
   background: var(--color-overlay);
 }
-.datetime-picker {
+.date-picker {
   position: fixed;
   z-index: 33;
   top: 50%;
@@ -91,21 +86,21 @@
   box-shadow: var(--shadow-card);
   transform: translate(-50%, -50%);
 }
-.datetime-picker-head {
+.date-picker-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 23px;
 }
-.datetime-picker-head b {
+.date-picker-head b {
   font-size: 23px;
   letter-spacing: -0.04em;
 }
-.datetime-picker-head div {
+.date-picker-head div {
   display: flex;
   gap: 12px;
 }
-.datetime-picker-head button {
+.date-picker-head button {
   width: 38px;
   height: 38px;
   color: var(--color-accent-deep);
@@ -145,40 +140,13 @@
   background: var(--color-accent);
   font-weight: 750;
 }
-.picker-time-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 22px 0;
-  padding-top: 18px;
-  border-top: 1px solid var(--color-border-soft);
-}
-.picker-time-row strong {
-  font-size: 18px;
-}
-.picker-time-controls {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 7px 10px;
-  background: var(--color-surface-muted);
-  border-radius: 15px;
-}
-.picker-time-controls select {
-  min-width: 48px;
-  color: var(--color-text-strong);
-  background: transparent;
-  border: 0;
-  outline: 0;
-  font-size: 19px;
-  font-variant-numeric: tabular-nums;
-}
-.datetime-picker-actions {
+.date-picker-actions {
+  margin-top: 24px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
-.datetime-picker-actions button {
+.date-picker-actions button {
   height: 52px;
   color: var(--color-text-strong);
   background: var(--color-surface-muted);
@@ -186,7 +154,7 @@
   font-size: 17px;
   font-weight: 700;
 }
-.datetime-picker-actions .confirm {
+.date-picker-actions .confirm {
   color: var(--color-accent-contrast);
   background: var(--color-accent);
 }

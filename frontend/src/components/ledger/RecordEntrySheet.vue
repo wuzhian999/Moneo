@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import { useLedger } from '../../composables/useLedger'
 import { useTheme } from '../../composables/useTheme'
 import type { LedgerRecord, RecordType } from '../../types/ledger'
-import DateTimePickerSheet from './DateTimePickerSheet.vue'
+import DatePickerSheet from './DatePickerSheet.vue'
 import { magicCategoryIcon } from '../../utils/magicIcon'
 
 const props = defineProps<{ initialType: RecordType; record?: LedgerRecord | null }>()
@@ -15,9 +15,8 @@ const selectedCategoryId = ref<number | null>(props.record?.categoryId ?? null)
 const amount = ref(props.record ? String(props.record.amount) : '')
 const note = ref(props.record?.note ?? '')
 const selectedDate = ref(props.record?.date ?? initialDate())
-const selectedTime = ref(props.record?.time ?? `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`)
 const isSaving = ref(false)
-const isDateTimePickerOpen = ref(false)
+const isDatePickerOpen = ref(false)
 const categoryOptions = computed(() => recordType.value === 'expense' ? expenseCategories.value : incomeCategories.value)
 const isEditing = computed(() => Boolean(props.record))
 const { theme } = useTheme()
@@ -33,10 +32,9 @@ function changeType(type: RecordType) {
   selectedCategoryId.value = categoryOptions.value[0]?.id ?? null
 }
 
-function updateDateTime(date: string, time: string) {
+function updateDate(date: string) {
   selectedDate.value = date
-  selectedTime.value = time
-  isDateTimePickerOpen.value = false
+  isDatePickerOpen.value = false
 }
 
 async function saveRecord() {
@@ -46,8 +44,8 @@ async function saveRecord() {
   if (!categoryId) { emit('notify', '分类加载中，请稍后重试'); return }
   isSaving.value = true
   try {
-    if (props.record) await updateRecord(props.record.id, recordType.value, categoryId, props.record.accountId, value, note.value, selectedDate.value, selectedTime.value)
-    else await addRecord(recordType.value, categoryId, value, note.value, selectedDate.value, selectedTime.value)
+    if (props.record) await updateRecord(props.record.id, recordType.value, categoryId, props.record.accountId, value, note.value, selectedDate.value)
+    else await addRecord(recordType.value, categoryId, value, note.value, selectedDate.value)
     emit('close')
     emit('notify', isEditing.value ? '账单已更新' : '已记一笔')
   } catch (error) {
@@ -64,8 +62,8 @@ async function saveRecord() {
     <div class="amount-input"><span>¥</span><input v-model="amount" inputmode="decimal" autofocus placeholder="0.00" /></div>
     <div class="category-grid"><button v-for="category in categoryOptions" :key="category.id" :class="{ selected: (selectedCategoryId ?? categoryOptions[0]?.id) === category.id }" @click="selectedCategoryId = category.id"><span :style="{ background: category.color }">{{ theme === 'magic' ? magicCategoryIcon(category.name, category.icon) : category.icon }}</span>{{ category.name }}</button></div>
     <label class="note-field"><span>备注</span><input v-model="note" placeholder="写点什么" /></label>
-    <button class="datetime-field" @click="isDateTimePickerOpen = true"><span>日期与时间</span><div><b>{{ selectedDate }}</b><b>{{ selectedTime }}</b></div></button>
+    <button class="date-field" @click="isDatePickerOpen = true"><span>日期</span><b>{{ selectedDate }}</b></button>
     <button class="submit-btn" :disabled="isSaving" @click="saveRecord">{{ isSaving ? '保存中…' : isEditing ? '保存修改' : '保存账单' }}</button>
-    <DateTimePickerSheet v-if="isDateTimePickerOpen" :date="selectedDate" :time="selectedTime" @close="isDateTimePickerOpen = false" @confirm="updateDateTime" />
+    <DatePickerSheet v-if="isDatePickerOpen" :date="selectedDate" @close="isDatePickerOpen = false" @confirm="updateDate" />
   </section>
 </template>

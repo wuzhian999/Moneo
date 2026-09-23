@@ -29,7 +29,7 @@ const selectedMonthLabel = computed(() => {
 })
 const selectedRecords = computed(() => records.value
   .filter((record) => record.date.startsWith(selectedMonth.value))
-  .sort((a, b) => `${b.date}${b.time}`.localeCompare(`${a.date}${a.time}`)))
+  .sort((a, b) => b.date.localeCompare(a.date) || b.id - a.id))
 const recordGroups = computed<RecordGroup[]>(() => {
   const groups = new Map<string, LedgerRecord[]>()
   selectedRecords.value.forEach((record) => groups.set(record.date, [...(groups.get(record.date) ?? []), record]))
@@ -210,10 +210,10 @@ function toggleCategory(name: string) {
 function categoryRecords(name: string) {
   return statRecords.value
     .filter((item) => item.type === categoryKind.value && item.category === name)
-    .sort((a, b) => `${b.date}${b.time}`.localeCompare(`${a.date}${a.time}`))
+    .sort((a, b) => b.date.localeCompare(a.date) || b.id - a.id)
 }
 
-async function addRecord(type: RecordType, categoryId: number, amount: number, note: string, date: string, time: string) {
+async function addRecord(type: RecordType, categoryId: number, amount: number, note: string, date: string) {
   const account = defaultAccount.value
   if (!account) throw new Error('请先创建账户')
   const created = await createBill({
@@ -222,7 +222,6 @@ async function addRecord(type: RecordType, categoryId: number, amount: number, n
     accountId: account.id,
     amount,
     date,
-    time,
     note: note.trim() || undefined,
   })
   await refreshMonthData()
@@ -230,8 +229,8 @@ async function addRecord(type: RecordType, categoryId: number, amount: number, n
   return created
 }
 
-async function updateRecord(id: number, type: RecordType, categoryId: number, accountId: number, amount: number, note: string, date: string, time: string) {
-  const updated = await updateBill(id, { type, categoryId, accountId, amount, date, time, note: note.trim() || undefined })
+async function updateRecord(id: number, type: RecordType, categoryId: number, accountId: number, amount: number, note: string, date: string) {
+  const updated = await updateBill(id, { type, categoryId, accountId, amount, date, note: note.trim() || undefined })
   await refreshMonthData()
   if (statPeriod.value !== 'month') await refreshStatistics()
   return updated
