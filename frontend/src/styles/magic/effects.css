@@ -1,0 +1,71 @@
+:root[data-theme="magic"] body {
+  background-image: var(--page-texture);
+}
+
+:root[data-theme="magic"] .app-shell::before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% -18%, rgba(243, 207, 118, 0.055), transparent 46%),
+    radial-gradient(ellipse at 50% 120%, rgba(0, 0, 0, 0.38), transparent 58%);
+}
+
+:root[data-theme="magic"] .page {
+  animation: magic-page-enter 240ms ease-out both;
+}
+
+:root[data-theme="magic"] .ai-page::before {
+  position: absolute;
+  inset: 14% 8% auto;
+  height: 230px;
+  content: "";
+  pointer-events: none;
+  opacity: 0.48;
+  background:
+    radial-gradient(circle at 25% 32%, rgba(243, 207, 118, 0.25) 0 1px, transparent 2px),
+    radial-gradient(circle at 74% 22%, rgba(243, 207, 118, 0.18) 0 1px, transparent 2px),
+    radial-gradient(circle at 64% 74%, rgba(243, 207, 118, 0.14) 0 1px, transparent 2px);
+  animation: magic-stardust 12s ease-in-out infinite alternate;
+}
+
+:root[data-theme="magic"] .ai-orb,
+:root[data-theme="magic"] .fab {
+  animation: magic-glow 3.4s ease-in-out infinite;
+}
+
+:root[data-theme="magic"] button:active {
+  transform: scale(0.97);
+}
+
+@keyframes magic-page-enter {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes magic-glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.08); }
+}
+
+@keyframes magic-stardust {
+  from { transform: translateY(0); opacity: 0.35; }
+  to { transform: translateY(-7px); opacity: 0.6; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme="magic"] .page,
+  :root[data-theme="magic"] .ai-page::before,
+  :root[data-theme="magic"] .ai-orb,
+  :root[data-theme="magic"] .fab {
+    animation: none;
+  }
+  :root[data-theme="magic"] *,
+  :root[data-theme="magic"] *::before,
+  :root[data-theme="magic"] *::after {
+    scroll-behavior: auto;
+    transition-duration: 1ms !important;
+  }
+}

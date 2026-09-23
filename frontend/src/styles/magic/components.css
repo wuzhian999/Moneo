@@ -1,0 +1,356 @@
+:root[data-theme="magic"] h1,
+:root[data-theme="magic"] h2,
+:root[data-theme="magic"] .month-picker-trigger,
+:root[data-theme="magic"] .sheet-title,
+:root[data-theme="magic"] .datetime-picker-head b {
+  font-family: var(--font-heading);
+  letter-spacing: 0.01em;
+}
+
+:root[data-theme="magic"] .ledger-header {
+  position: relative;
+}
+
+:root[data-theme="magic"] .month-nav::after {
+  width: 30px;
+  height: 1px;
+  margin-left: 4px;
+  content: "";
+  background: linear-gradient(90deg, var(--magic-gold-dark), transparent);
+}
+
+:root[data-theme="magic"] .month-picker-trigger {
+  color: var(--magic-parchment-light);
+  font-size: 24px;
+}
+
+:root[data-theme="magic"] .avatar {
+  border: 1px solid rgba(243, 207, 118, 0.56);
+  background:
+    radial-gradient(circle at 36% 30%, rgba(243, 207, 118, 0.2), transparent 45%),
+    var(--magic-card);
+  box-shadow: inset 0 1px rgba(255, 235, 179, 0.12), 0 4px 12px rgba(0, 0, 0, 0.26);
+}
+
+:root[data-theme="magic"] .hero-summary,
+:root[data-theme="magic"] .overview-panel,
+:root[data-theme="magic"] .record-group,
+:root[data-theme="magic"] .suggestion-list button,
+:root[data-theme="magic"] .expense-trend,
+:root[data-theme="magic"] .category-detail {
+  border: 1px solid var(--magic-border);
+  box-shadow: var(--shadow-card);
+}
+
+:root[data-theme="magic"] .hero-summary {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background:
+    linear-gradient(145deg, rgba(75, 47, 24, 0.98), rgba(35, 20, 11, 0.99)),
+    var(--card-texture);
+}
+
+:root[data-theme="magic"] .hero-summary::after {
+  position: absolute;
+  top: 13px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  content: "✦";
+  color: rgba(243, 207, 118, 0.42);
+  font-family: var(--font-heading);
+  font-size: 18px;
+  text-align: center;
+  line-height: 38px;
+  border: 1px solid rgba(243, 207, 118, 0.18);
+  border-radius: 50%;
+}
+
+:root[data-theme="magic"] .hero-summary strong,
+:root[data-theme="magic"] .stat-grid b,
+:root[data-theme="magic"] .record-row strong,
+:root[data-theme="magic"] .record-details strong {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+}
+
+:root[data-theme="magic"] .hero-summary strong {
+  color: var(--magic-parchment-light);
+}
+
+:root[data-theme="magic"] .budget-line {
+  padding: 19px 5px 25px;
+}
+
+:root[data-theme="magic"] .budget-progress {
+  height: 8px;
+  border: 1px solid rgba(243, 207, 118, 0.13);
+  background: #392610;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+
+:root[data-theme="magic"] .budget-progress i {
+  background: linear-gradient(90deg, var(--magic-gold-dark), var(--magic-gold-light));
+  box-shadow: inset 0 1px rgba(255, 243, 188, 0.35);
+}
+
+:root[data-theme="magic"] .section-head h2::before,
+:root[data-theme="magic"] .overview-title h2::before,
+:root[data-theme="magic"] .expense-trend h2::before,
+:root[data-theme="magic"] .category-detail h2::before {
+  margin-right: 7px;
+  content: "✦";
+  color: var(--magic-gold);
+  font-size: 11px;
+  vertical-align: 2px;
+}
+
+:root[data-theme="magic"] .record-group {
+  border-radius: 17px;
+  background-color: var(--magic-parchment);
+}
+
+:root[data-theme="magic"] .date-row {
+  border-bottom: 1px solid rgba(126, 84, 32, 0.18);
+}
+
+:root[data-theme="magic"] .record-row {
+  background-color: var(--magic-parchment);
+}
+
+:root[data-theme="magic"] .record-icon {
+  border: 1px solid rgba(82, 48, 17, 0.11);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.24);
+}
+
+:root[data-theme="magic"] .empty-state {
+  padding: 50px 20px;
+  font-family: var(--font-heading);
+  line-height: 1.8;
+}
+
+:root[data-theme="magic"] .empty-state::before {
+  display: block;
+  margin-bottom: 8px;
+  content: "✦ ︴ ✎ ︴ ✦";
+  color: var(--magic-gold-dark);
+  font-family: var(--font-data);
+  font-size: 16px;
+  letter-spacing: 0.15em;
+}
+
+:root[data-theme="magic"] .fab {
+  border: 1px solid var(--magic-gold-light);
+  background: var(--gradient-accent);
+  box-shadow: var(--shadow-fab), inset 0 1px rgba(255, 248, 204, 0.46);
+}
+
+:root[data-theme="magic"] .fab::before {
+  position: absolute;
+  inset: 4px;
+  content: "";
+  border: 1px solid rgba(78, 47, 12, 0.42);
+  border-radius: 50%;
+}
+
+:root[data-theme="magic"] .fab::after {
+  position: absolute;
+  inset: -7px;
+  content: "";
+  border: 1px solid rgba(217, 170, 60, 0.16);
+  border-radius: 50%;
+}
+
+:root[data-theme="magic"] .tabbar {
+  border-top-color: var(--magic-border);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.18);
+}
+
+:root[data-theme="magic"] .tabbar a.active {
+  text-shadow: 0 0 12px rgba(243, 207, 118, 0.24);
+}
+
+:root[data-theme="magic"] .tabbar a span {
+  font-family: var(--font-heading);
+}
+
+:root[data-theme="magic"] .tabbar a span {
+  font-size: 0;
+}
+
+:root[data-theme="magic"] .tabbar a:nth-child(1) span::after,
+:root[data-theme="magic"] .tabbar a:nth-child(2) span::after,
+:root[data-theme="magic"] .tabbar a:nth-child(3) span::after {
+  font-size: 20px;
+  line-height: 19px;
+}
+
+:root[data-theme="magic"] .tabbar a:nth-child(1) span::after { content: "▤"; }
+:root[data-theme="magic"] .tabbar a:nth-child(2) span::after { content: "✦"; }
+:root[data-theme="magic"] .tabbar a:nth-child(3) span::after { content: "⌁"; }
+
+:root[data-theme="magic"] .quick-sheet,
+:root[data-theme="magic"] .record-sheet,
+:root[data-theme="magic"] .month-sheet,
+:root[data-theme="magic"] .budget-sheet,
+:root[data-theme="magic"] .datetime-picker,
+:root[data-theme="magic"] .theme-menu {
+  border: 1px solid rgba(137, 91, 27, 0.54);
+  background-color: var(--magic-parchment);
+  box-shadow: inset 0 1px rgba(255, 249, 210, 0.55), var(--shadow-card);
+}
+
+:root[data-theme="magic"] .quick-sheet,
+:root[data-theme="magic"] .record-sheet,
+:root[data-theme="magic"] .month-sheet,
+:root[data-theme="magic"] .budget-sheet {
+  border-bottom: 0;
+}
+
+:root[data-theme="magic"] .quick-actions button,
+:root[data-theme="magic"] .category-grid button,
+:root[data-theme="magic"] .datetime-field,
+:root[data-theme="magic"] .note-field,
+:root[data-theme="magic"] .budget-sheet label {
+  border: 1px solid rgba(132, 88, 33, 0.17);
+  background-color: rgba(250, 235, 197, 0.54);
+}
+
+:root[data-theme="magic"] .category-grid button.selected,
+:root[data-theme="magic"] .type-switch .selected,
+:root[data-theme="magic"] .month-options button.selected {
+  border-color: var(--magic-gold-dark);
+  background: rgba(243, 207, 118, 0.36);
+  box-shadow: inset 0 1px rgba(255, 248, 208, 0.55);
+}
+
+:root[data-theme="magic"] .submit-btn,
+:root[data-theme="magic"] .datetime-picker-actions .confirm {
+  border: 1px solid var(--magic-gold-light);
+  background: linear-gradient(145deg, var(--magic-gold-light), var(--magic-gold));
+  box-shadow: inset 0 1px rgba(255, 248, 208, 0.46);
+}
+
+:root[data-theme="magic"] .ai-page {
+  position: relative;
+}
+
+:root[data-theme="magic"] .ai-page .eyebrow {
+  color: var(--magic-gold);
+  font-family: var(--font-heading);
+}
+
+:root[data-theme="magic"] .ai-orb {
+  position: relative;
+  border: 1px solid var(--magic-gold-light);
+  border-radius: 50%;
+  color: var(--magic-card);
+  background: var(--gradient-accent);
+  box-shadow: var(--shadow-raised), inset 0 1px rgba(255, 251, 216, 0.7);
+}
+
+:root[data-theme="magic"] .ai-orb::after {
+  position: absolute;
+  inset: -9px;
+  content: "";
+  border: 1px solid rgba(217, 170, 60, 0.24);
+  border-radius: 50%;
+}
+
+:root[data-theme="magic"] .suggestion-list button {
+  position: relative;
+  border-radius: 14px;
+  color: var(--magic-text);
+  background-color: var(--magic-card);
+}
+
+:root[data-theme="magic"] .suggestion-list button::before {
+  margin-right: 9px;
+  content: "✦";
+  color: var(--magic-gold);
+}
+
+:root[data-theme="magic"] .ai-input {
+  border-color: var(--magic-border);
+  color: var(--magic-text-secondary);
+  background: rgba(42, 25, 14, 0.8);
+}
+
+:root[data-theme="magic"] .ai-input button {
+  color: var(--magic-card);
+  background: var(--magic-gold);
+}
+
+:root[data-theme="magic"] .overview-panel,
+:root[data-theme="magic"] .expense-trend,
+:root[data-theme="magic"] .category-detail {
+  border-radius: var(--radius-card);
+  background-color: var(--magic-card);
+  color: var(--magic-text);
+}
+
+:root[data-theme="magic"] .overview-panel {
+  padding: 18px;
+}
+
+:root[data-theme="magic"] .stat-grid > div,
+:root[data-theme="magic"] .record-details {
+  border: 1px solid rgba(243, 207, 118, 0.1);
+  background: rgba(16, 12, 9, 0.3);
+}
+
+:root[data-theme="magic"] .stat-grid b,
+:root[data-theme="magic"] .category-list strong,
+:root[data-theme="magic"] .chart-key b {
+  color: var(--magic-parchment-light);
+}
+
+:root[data-theme="magic"] .period-tabs,
+:root[data-theme="magic"] .income-expense-switch {
+  border: 1px solid var(--magic-border);
+  background: rgba(42, 25, 14, 0.72);
+}
+
+:root[data-theme="magic"] .period-tabs .active,
+:root[data-theme="magic"] .income-expense-switch .active {
+  color: var(--magic-card);
+  background: var(--magic-parchment);
+  box-shadow: inset 0 1px rgba(255, 255, 227, 0.6);
+}
+
+:root[data-theme="magic"] .chart-grid {
+  stroke: rgba(243, 207, 118, 0.18);
+}
+
+:root[data-theme="magic"] .chart-axis {
+  stroke: rgba(243, 207, 118, 0.38);
+}
+
+:root[data-theme="magic"] .chart-line,
+:root[data-theme="magic"] .chart-point {
+  stroke: var(--magic-gold-light);
+}
+
+:root[data-theme="magic"] .chart-point {
+  fill: var(--magic-card);
+}
+
+:root[data-theme="magic"] .chart-y-label,
+:root[data-theme="magic"] .chart-x-label {
+  fill: var(--magic-text-secondary);
+}
+
+:root[data-theme="magic"] .category-list article {
+  border-bottom-color: rgba(243, 207, 118, 0.15);
+}
+
+:root[data-theme="magic"] .category-list i {
+  background: rgba(243, 207, 118, 0.12);
+}
+
+@media (max-width: 374px) {
+  :root[data-theme="magic"] .hero-summary strong { font-size: 36px; }
+  :root[data-theme="magic"] .month-picker-trigger { font-size: 22px; }
+  :root[data-theme="magic"] .chart-key { min-width: 94px; font-size: 12px; }
+}

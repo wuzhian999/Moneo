@@ -1,5 +1,5 @@
 import { computed, ref } from 'vue'
-import { createBill, fetchAccounts, fetchBills, fetchCategories, fetchDashboardSummary, saveBudget as saveBudgetRequest } from '../api/ledger'
+import { createBill, deleteBill, fetchAccounts, fetchBills, fetchCategories, fetchDashboardSummary, saveBudget as saveBudgetRequest, updateBill } from '../api/ledger'
 import type { Account, Category, CategoryStat, LedgerRecord, RecordGroup, RecordType, StatisticsPeriod } from '../types/ledger'
 import { formatFullDate } from '../utils/format'
 
@@ -213,7 +213,7 @@ function categoryRecords(name: string) {
     .sort((a, b) => `${b.date}${b.time}`.localeCompare(`${a.date}${a.time}`))
 }
 
-async function addRecord(type: RecordType, categoryId: number, amount: number, note: string) {
+async function addRecord(type: RecordType, categoryId: number, amount: number, note: string, date: string, time: string) {
   const account = defaultAccount.value
   if (!account) throw new Error('请先创建账户')
   const created = await createBill({
@@ -221,8 +221,8 @@ async function addRecord(type: RecordType, categoryId: number, amount: number, n
     categoryId,
     accountId: account.id,
     amount,
-    date: currentDateInSelectedMonth(),
-    time: `${String(today.getHours()).padStart(2, '0')}:${String(today.getMinutes()).padStart(2, '0')}`,
+    date,
+    time,
     note: note.trim() || undefined,
   })
   await refreshMonthData()
@@ -230,13 +230,21 @@ async function addRecord(type: RecordType, categoryId: number, amount: number, n
   return created
 }
 
-function monthQuery(month: string) {
-  return { startDate: `${month}-01`, endDate: `${month}-${String(daysInMonth(month)).padStart(2, '0')}` }
+async function updateRecord(id: number, type: RecordType, categoryId: number, accountId: number, amount: number, note: string, date: string, time: string) {
+  const updated = await updateBill(id, { type, categoryId, accountId, amount, date, time, note: note.trim() || undefined })
+  await refreshMonthData()
+  if (statPeriod.value !== 'month') await refreshStatistics()
+  return updated
 }
 
-function currentDateInSelectedMonth() {
-  const day = Math.min(today.getDate(), daysInMonth(selectedMonth.value))
-  return `${selectedMonth.value}-${String(day).padStart(2, '0')}`
+async function removeRecord(id: number) {
+  await deleteBill(id)
+  await refreshMonthData()
+  if (statPeriod.value !== 'month') await refreshStatistics()
+}
+
+function monthQuery(month: string) {
+  return { startDate: `${month}-01`, endDate: `${month}-${String(daysInMonth(month)).padStart(2, '0')}` }
 }
 
 function daysInMonth(month: string) {
@@ -297,6 +305,6 @@ export function useLedger() {
     categoryKind, expandedCategory, categoryTotal, categoryStats, donutStyle, trendData,
     expenseCategories, incomeCategories, isLoading, loadError, initializeLedger,
     selectMonth, moveMonth, setBudget, selectStatPeriod, moveStatPeriod,
-    toggleCategory, categoryRecords, addRecord,
+    toggleCategory, categoryRecords, addRecord, updateRecord, removeRecord,
   }
 }

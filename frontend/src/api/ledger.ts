@@ -17,6 +17,14 @@ export function createBill(payload: BillSavePayload) {
   return request<ApiBill>('/bills', { method: 'POST', body: JSON.stringify(payload) })
 }
 
+export function updateBill(id: number, payload: BillSavePayload) {
+  return request<ApiBill>(`/bills/${id}`, { method: 'PUT', body: JSON.stringify(payload) })
+}
+
+export function deleteBill(id: number) {
+  return request<void>(`/bills/${id}`, { method: 'DELETE' })
+}
+
 export function fetchDashboardSummary(month: string) {
   return request<DashboardSummary>('/dashboard/summary', {}, { month })
 }

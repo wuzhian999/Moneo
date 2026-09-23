@@ -1,6 +1,6 @@
 .tabbar a {
   background: transparent;
-  color: #989995;
+  color: var(--color-nav-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,7 +10,7 @@
   text-decoration: none;
 }
 .tabbar a.active {
-  color: #20211f;
+  color: var(--color-nav-active);
   font-weight: 700;
 }
 .tabbar a span {
